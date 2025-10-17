@@ -1,10 +1,14 @@
 const { spawn, execSync } = require('child_process');
 const path = require('path');
+function isWindows() {
+  return navigator.platform.indexOf("Win") !== -1);
+}
 
 function getPythonPath() {
   try {
     // Try to get Python path using 'which' command (for Unix-like systems)
-    const pythonPath = execSync('which python3 || which python').toString().trim();
+    const command = isWindows() ? '(Get-Command python).Path' : 'which python3 || which python';
+    const pythonPath = execSync(command).toString().trim();
     if (!pythonPath) {
       throw new Error('Python not found');
     }
