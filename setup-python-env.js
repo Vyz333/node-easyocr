@@ -63,7 +63,7 @@ try {
       
       // Create virtual environment
       console.log('Creating virtual environment...');
-      await execSync(pythonPath, ['-m', 'venv', venvPath]);
+      await execSync('python', ['-m', 'venv', venvPath]);
       
       // Determine the path to the virtual environment's Python executable
       const venvPythonPath = process.platform === 'win32'
