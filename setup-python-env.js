@@ -63,7 +63,7 @@ try {
       
       // Create virtual environment
       console.log('Creating virtual environment...');
-      await runCommand(pythonPath, ['-m', 'venv', venvPath]);
+      await execSync(pythonPath, ['-m', 'venv', venvPath]);
       
       // Determine the path to the virtual environment's Python executable
       const venvPythonPath = process.platform === 'win32'
@@ -71,12 +71,12 @@ try {
         : path.join(venvPath, 'bin', 'python');
       
       // Ensure pip is up to date in the virtual environment
-      await runCommand(venvPythonPath, ['-m', 'pip', 'install', '--upgrade', 'pip']);
+      await execSync(venvPythonPath, ['-m', 'pip', 'install', '--upgrade', 'pip']);
       
       // Install requirements in the virtual environment
       for (const req of requirements) {
         console.log(`Installing ${req}...`);
-        await runCommand(venvPythonPath, ['-m', 'pip', 'install', req]);
+        await execSync(venvPythonPath, ['-m', 'pip', 'install', req]);
       }
       
       console.log('Python environment setup complete!');
