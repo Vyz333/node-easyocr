@@ -1,7 +1,7 @@
 const { spawn, execSync } = require('child_process');
 const path = require('path');
 function isWindows() {
-  return navigator.platform.indexOf("Win") !== -1);
+  return navigator.platform.indexOf("Win") !== -1;
 }
 
 function getPythonPath() {
