@@ -1,4 +1,4 @@
-const { spawn, execSync } = require('child_process');
+const { spawn, execSync } = require('node:child_process');
 const path = require('path');
 function isWindows() {
   return navigator.platform.indexOf("Win") !== -1;
@@ -39,7 +39,7 @@ try {
 
   function runCommand(command, args, options = {}) {
     return new Promise((resolve, reject) => {
-      const process = spawn(command, args, { stdio: 'inherit', shell: true, ...options });
+      const process = spawn(command, args, { shell: true, ...options });
       process.stdout.on('data', (data) => {
         console.log(`stdout: ${data}`);
       });
