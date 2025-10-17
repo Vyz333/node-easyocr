@@ -7,7 +7,7 @@ function isWindows() {
 function getPythonPath() {
   try {
     // Try to get Python path using 'which' command (for Unix-like systems)
-    const command = isWindows() ? '(Get-Command python).Path' : 'which python3 || which python';
+    const command = isWindows() ? 'where python' : 'which python3 || which python';
     const pythonPath = execSync(command).toString().trim();
     if (!pythonPath) {
       throw new Error('Python not found');
