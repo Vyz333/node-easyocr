@@ -39,7 +39,7 @@ try {
 
   function runCommand(command, args, options = {}) {
     return new Promise((resolve, reject) => {
-      const process = spawn(command, args, { stdio: 'inherit', ...options });
+      const process = spawn(command, args, { stdio: 'inherit', shell: true, ...options });
       process.on('close', (code) => {
         if (code !== 0) {
           reject(new Error(`Command failed with exit code ${code}`));
