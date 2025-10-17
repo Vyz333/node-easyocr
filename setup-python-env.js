@@ -40,6 +40,12 @@ try {
   function runCommand(command, args, options = {}) {
     return new Promise((resolve, reject) => {
       const process = spawn(command, args, { stdio: 'inherit', shell: true, ...options });
+      process.stdout.on('data', (data) => {
+        console.log(`stdout: ${data}`);
+      });
+      process.stderr.on('data', (data) => {
+        console.error(`stderr: ${data}`);
+      });
       process.on('close', (code) => {
         if (code !== 0) {
           reject(new Error(`Command failed with exit code ${code}`));
